@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:batch="http://www.springframework.org/schema/batch"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
+
+    <!-- Job Repository 설정 (필요시) -->
+    <bean id="jobRepository" class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+    </bean>
+
+    <!-- Job Launcher 설정 (필요시) -->
+    <bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+        <property name="jobRepository" ref="jobRepository"/>
+    </bean>
+
+    <!-- Transaction Manager 설정 -->
+    <bean id="transactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager"/>
+
+    <!-- Tasklet 정의 -->
+    <bean id="sampleTasklet" class="org.example.batch.tasks.SampleTasklet"/>
+
+    <!-- Step 정의 -->
+    <batch:step id="numberLoggingStep">
+        <batch:tasklet ref="sampleTasklet"/>
+    </batch:step>
+
+    <!-- Job 정의 -->
+    <batch:job id="sampleJob">
+<!--        <batch:step ref="numberLoggingStep"/>-->
+    </batch:job>
+
+</beans>

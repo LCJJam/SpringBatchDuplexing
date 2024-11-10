@@ -1,15 +1,48 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '3.1.5'
+    id 'io.spring.dependency-management' version '1.1.3'
 }
 
 group = 'org.example'
 version = '1.0-SNAPSHOT'
 
+//java {
+//    sourceCompatibility = '17`'
+//}
+
 repositories {
     mavenCentral()
 }
 
+//configurations {
+//    compileOnly {
+//        extendsFrom annotationProcessor
+//    }
+//}
+
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter' // 기본 스프링 기능
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-batch' // 배치 처리 기능
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // JPA
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc' // JDBC 지원
+//    implementation 'com.h2database:h2' // H2 데이터베이스 (테스트용)
+    runtimeOnly 'com.h2database:h2' // H2 데이터베이스 (테스트용)
+
+//    implementation 'org.springframework.boot:spring-boot-starter-data-redis' // Redis 사용
+//    implementation 'io.lettuce.core:lettuce-core' // Lettuce 클라이언트
+    implementation 'org.redisson:redisson-spring-boot-starter:3.17.5'
+
+    implementation 'ch.qos.logback:logback-classic' // Logback 로깅
+    implementation 'org.slf4j:slf4j-api' // SLF4J 인터페이스
+
+    compileOnly 'org.projectlombok:lombok:1.18.24' // 최신 버전의 Lombok 사용
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    implementation 'org.springframework.boot:spring-boot-starter-quartz' // Quartz 스케줄링 지원
+
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
