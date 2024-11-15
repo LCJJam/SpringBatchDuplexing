@@ -28,12 +28,13 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // JPA
     implementation 'org.springframework.boot:spring-boot-starter-jdbc' // JDBC 지원
-//    implementation 'com.h2database:h2' // H2 데이터베이스 (테스트용)
+
     runtimeOnly 'com.h2database:h2' // H2 데이터베이스 (테스트용)
 
-//    implementation 'org.springframework.boot:spring-boot-starter-data-redis' // Redis 사용
-//    implementation 'io.lettuce.core:lettuce-core' // Lettuce 클라이언트
-    implementation 'org.redisson:redisson-spring-boot-starter:3.17.5'
+    implementation group: 'io.netty', name: 'netty-common', version: '4.1.115.Final'
+    implementation 'org.redisson:redisson-spring-boot-starter:3.38.1'
+
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
     implementation 'ch.qos.logback:logback-classic' // Logback 로깅
     implementation 'org.slf4j:slf4j-api' // SLF4J 인터페이스

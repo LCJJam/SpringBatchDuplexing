@@ -27,6 +27,17 @@ quartz:
   cron:
     expression: "0/10 * * * * ?" # 10초마다 실행되는 Cron 표현식
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'  # 모든 엔드포인트 노출
+  endpoint:
+    health:
+      enabled: true
+      cache:
+        time-to-live: 0ms
+
 logging:
   level:
     root: INFO
